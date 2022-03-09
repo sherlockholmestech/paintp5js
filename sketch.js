@@ -3,10 +3,10 @@ let strokeW = 5;
 let dfbw;
 let dfbh;
 let ctemp;
-let line, square, circle;
-line = true
-square = false
-circle = false
+let linear, rectangular, circular;
+linear = true
+rectangular = false
+circular = false
 function setup() {
   frameRate(500);
   createCanvas(windowWidth, windowHeight);
@@ -87,13 +87,18 @@ function draw() {
   //Brush Stroke
   strokeWeight(strokeW);
   stroke(c);
-  if (mouseY > 70 && mouseY < windowHeight-dfbh*2 && pmouseY > 70 && pmouseY < windowHeight-dfbh*2 && mouseIsPressed){
+  if (mouseY > 70 && mouseY < windowHeight-dfbh*2 && pmouseY > 70 && pmouseY < windowHeight-dfbh*2 && mouseIsPressed && linear == true){
     line(mouseX, mouseY, pmouseX, pmouseY);
   }
 
-  if (mouseY > 70 && mouseY < windowHeight-dfbh*2 && pmouseY > 70 && pmouseY < windowHeight-dfbh*2 && mouseIsPressed){
-    line(mouseX, mouseY, pmouseX, pmouseY);
+  if (mouseY > 70 && mouseY < windowHeight-dfbh*2 && pmouseY > 70 && pmouseY < windowHeight-dfbh*2 && mouseIsPressed && circular == true){
+    circle(mouseX, mouseY, strokeW, strokeW);
   }
+
+  if (mouseY > 70 && mouseY < windowHeight-dfbh*2 && pmouseY > 70 && pmouseY < windowHeight-dfbh*2 && mouseIsPressed && rectangular == true){
+    square(mouseX, mouseY, strokeW);
+  }
+
   strokeWeight(1);
   stroke('black');
   line(0, windowHeight-dfbh*2, windowWidth, windowHeight-dfbh*2);
@@ -145,56 +150,98 @@ function draw() {
   
   //logic to red square
   if(mouseX >  windowWidth-dfbw && mouseX < windowWidth && mouseY > windowHeight-dfbh && mouseY < windowHeight && mouseIsPressed){
-    c = 'red'
+    c = 'red';
   }
   
   //logic to pruple square
   if(mouseX >  windowWidth-dfbw*2 && mouseX < windowWidth-dfbw && mouseY > windowHeight-dfbh && mouseY < windowHeight && mouseIsPressed){
-    c = 'purple'
+    c = 'purple';
   }
   
   //logic to blue square
   if(mouseX >  windowWidth-dfbw && mouseX < windowWidth && mouseY > windowHeight-dfbh*2 && mouseY < windowHeight-dfbh && mouseIsPressed){
-    c = 'blue'
+    c = 'blue';
   }
   
   //logic to green square
   if(mouseX >  windowWidth-dfbw*2 && mouseX < windowWidth-dfbw && mouseY > windowHeight-dfbh*2 && mouseY < windowHeight-dfbh && mouseIsPressed){
-    c = 'green'
+    c = 'green';
   }
   
   //logic to white square
   if(mouseX >  windowWidth-dfbw*3 && mouseX < windowWidth-dfbw*2 && mouseY > windowHeight-dfbh && mouseY < windowHeight && mouseIsPressed){
-    c = 'white'
+    c = 'white';
   }
   
   //logic to black square
   if(mouseX >  windowWidth-dfbw*3 && mouseX < windowWidth-dfbw*2 && mouseY > windowHeight-dfbh*2 && mouseY < windowHeight-dfbh && mouseIsPressed){
-    c = 'black'
+    c = 'black';
   }
   
   //logic to yellow square
   if(mouseX >  windowWidth-dfbw*4 && mouseX < windowWidth-dfbw*3 && mouseY > windowHeight-dfbh && mouseY < windowHeight && mouseIsPressed){
-    c = 'yellow'
+    c = 'yellow';
   }
   
   //logic to orange square
   if(mouseX >  windowWidth-dfbw*4 && mouseX < windowWidth-dfbw*3 && mouseY > windowHeight-dfbh*2 && mouseY < windowHeight-dfbh && mouseIsPressed){
-    c = 'orange'
+    c = 'orange';
   }
   
   //logic to brown square
   if(mouseX >  windowWidth-dfbw*5 && mouseX < windowWidth-dfbw*4 && mouseY > windowHeight-dfbh && mouseY < windowHeight && mouseIsPressed){
-    c = 'brown'
+    c = 'brown';
   }
   
   //logic to pink square
   if(mouseX >  windowWidth-dfbw*5 && mouseX < windowWidth-dfbw*4 && mouseY > windowHeight-dfbh*2 && mouseY < windowHeight-dfbh && mouseIsPressed){
-    c = 'pink'
+    c = 'pink';
+  }
+
+}
+
+function keyPressed () {
+  if (keyCode === 76) {
+    linear = true;
+    circular = false;
+    rectangular = false;
+  } else if (keyCode === 79) {
+    linear = false;
+    circular = true;
+    rectangular = false;
+  } else if (keyCode === 82) {
+    linear = false;
+    circular = false;
+    rectangular = true;
+  } else if (keyCode === 88) {
+  linear = true;
+  circular = false;
+  rectangular = false;
+  c = 'black';
+  d = 0;
+  clear();
+  background(255);
+  //Menu Text
+  fill('black');
+  textSize(15);
+  textAlign(CENTER);
+  textStyle(BOLD);
+  text('CANVAS', windowWidth*1/2, 100);
+  textStyle(NORMAL);
+  textAlign(LEFT);
+  text('Pen tip Size:', 50, 50);
+  text('COLOURS:', windowWidth-69*7, windowHeight-69);
+  text('Current Colour:', 100, windowHeight-69);
+  console.log('Cleared');
+  console.log(c);
   }
 }
 
+
 function CLEAR() {
+  linear = true;
+  circular = false;
+  rectangular = false;
   c = 'black';
   d = 0;
   clear();
