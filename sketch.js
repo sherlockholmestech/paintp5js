@@ -3,6 +3,10 @@ let strokeW = 5;
 let dfbw;
 let dfbh;
 let ctemp;
+let line, square, circle;
+line = true
+square = false
+circle = false
 function setup() {
   frameRate(500);
   createCanvas(windowWidth, windowHeight);
@@ -83,6 +87,10 @@ function draw() {
   //Brush Stroke
   strokeWeight(strokeW);
   stroke(c);
+  if (mouseY > 70 && mouseY < windowHeight-dfbh*2 && pmouseY > 70 && pmouseY < windowHeight-dfbh*2 && mouseIsPressed){
+    line(mouseX, mouseY, pmouseX, pmouseY);
+  }
+
   if (mouseY > 70 && mouseY < windowHeight-dfbh*2 && pmouseY > 70 && pmouseY < windowHeight-dfbh*2 && mouseIsPressed){
     line(mouseX, mouseY, pmouseX, pmouseY);
   }
